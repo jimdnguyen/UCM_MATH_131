@@ -9,16 +9,17 @@ a_0 = 1;
 tmpSequence = a_0;
 tmpSequence2 = 0;
 
-if n == 1
-    y = tmpSequence;
-else   
+%if n == 1
+  %  y = tmpSequence;
+%else   
     
     for i = 1:n
-        tmpSequence2 = tmpSequence;
-        tmpSequence = ((1/2) * ((tmpSequence)^2 - i^2));     
+        tmpSequence2 = a_0;
+        %tmpSequence = ((1/2) * ((tmpSequence)^2 - i^2));
+        a_0 = ((tmpSequence2)^2 - i^2)/2;
     end
     y = tmpSequence2;
-end
+%end
     
 
 
