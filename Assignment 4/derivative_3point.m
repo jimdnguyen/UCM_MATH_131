@@ -19,11 +19,11 @@ function fp = derivative_3point(f,x)
        end
        
        if i == 1         
-          fp(i) = (1/(2*h)) * (-3 * f(x(i)) + 4 * f(x(i) + h) - f(x(i) + 2 * h));%; %end-point formula
+          fp(i) = (1/(2*h)) * (-3 * f(x(i)) + 4 * f(x(i) + h) - f(x(i) + 2 * h));%; %forward formula
        end
        
        if i == N
-          fp(i) = (1/(2*h)) * (f(x(i) - 2 * h) - 4 * f(x(i) - h) + 3 * f(x(i)));%;  %end-point formula
+          fp(i) = (1/(2*h)) * (f(x(i) - 2 * h) - 4 * f(x(i) - h) + 3 * f(x(i)));%;  %backward formula
        end
     end 
 end
