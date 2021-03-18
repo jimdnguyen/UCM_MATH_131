@@ -24,26 +24,31 @@ CD3_relative_error = zeros(1,16);
 for i = 1:16
     CD3(i) = (1/(2*h(i)) * (f(x + h(i)) - f(x - h(i))));
     
-    maxdddf = max(dddf(h(i))); % finds ths max value of all the elements
-    indexOfFirstMax = find(dddf(h) == maxdddf,1,'first'); % gets the first element that is the max value
-    E = h(indexOfFirstMax); % gets the x value at the index
+    %maxdddf = max(dddf(h(i))); % finds ths max value of all the elements
+    %indexOfFirstMax = find(dddf(h) == maxdddf,1,'first'); % gets the first element that is the max value
+    %E = h(indexOfFirstMax); % gets the x value at the index
     
-    CD3_truncation_error(i) = -h(i)^2 / 6 * dddf(E);
-    CD3_relative_error(i) = abs(dddf(x) - CD3(i)) / abs((dddf(x)));
+    CD3_truncation_error(i) = -(h(i)^2 / 6) * dddf(E);
+    CD3_relative_error(i) = abs((dddf(x) - CD3(i)) / dddf(x));
 end
 
 loglog(h,CD3_relative_error,'y'); % this is plotting the step size h verus relative error in a loglog plot
 hold on
 loglog(h,CD3_truncation_error,'r'); % this is just plotting the estimated truncation error for same h in red.
+legend('Relative Error','Truncation Error','Location','southeast');
+xlabel('Value of h');
+ylabel('The different errors');
+title('Loglog plot between h and relative/truncation error');
 hold off
 grid on
 
 %%
 % *Part b*
-% We can see that as h grows smaller, then the error decreases. This can be
-% seen in the red line. The yellow line at the very top of the graph
-% shows the truncation error with this formula. 
-% As you can see, it looks really good since the truncation error
-% isn't moving around and in general a horizontal line. The actual error
-% does follow the truncation error estimate I would assume since the
-% truncation error isn't moving around and is just mainly a straight line.
+% We can see that as h grows smaller, then the error increases. This can be
+% seen in the yellow line of relative error at the top of the graph. 
+% The red line of the graph shows the truncation error. 
+% As you can see, we can see that as h decreases, the truncation error also
+% decreases as well. we see that the actual error does follow the
+% truncation error estimate as it is one of the reasons 
+% why the error increases as h decreases.
+% grows smaller.
